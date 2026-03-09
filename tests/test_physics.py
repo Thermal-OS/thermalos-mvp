@@ -3,26 +3,26 @@ ThermalOS – Unit Tests
 Abdeckung: Physics Engine, AI Surrogate, Anomaly Detector, Sensor Simulator
 """
 
-import sys
 import os
+import sys
 
 # Sicherstellen, dass der Projektroot im Suchpfad liegt
 _ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
 if _ROOT not in sys.path:
     sys.path.insert(0, _ROOT)
 
-import numpy as np
-import pytest
+import numpy as np  # noqa: E402
+import pytest  # noqa: E402
 
-from src.physics.heatpipe_model import (
+from src.physics.heatpipe_model import (  # noqa: E402
     HeatpipeConfig,
     HeatpipeModel,
     TEGModel,
     FLUIDS,
     quick_simulation,
 )
-from src.ai.anomaly import HeatpipeAnomalyDetector, AnomalyResult
-from src.sensor.simulator import HeatpipeSensorSimulator, SensorConfig, SensorReading
+from src.ai.anomaly import HeatpipeAnomalyDetector, AnomalyResult  # noqa: E402
+from src.sensor.simulator import HeatpipeSensorSimulator, SensorConfig  # noqa: E402
 
 
 # ═══════════════════════════════════════════════════════════════════════════════

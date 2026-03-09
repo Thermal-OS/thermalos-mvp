@@ -9,13 +9,13 @@ Bugfixes gegenüber Original:
   Physics Engine und einem inline-trainierten Mini-Surrogate
 """
 
-import sys
-import os
-import numpy as np
 import pickle
+import sys
 import time
 from pathlib import Path
 from typing import Optional
+
+import numpy as np
 
 from sklearn.neural_network import MLPRegressor
 from sklearn.preprocessing import StandardScaler

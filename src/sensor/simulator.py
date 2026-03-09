@@ -10,10 +10,11 @@ Erzeugt realistische Sensordaten basierend auf dem Versuchsaufbau:
 - max_drift ist als SensorConfig-Parameter konfigurierbar
 """
 
-import numpy as np
 import time
 from dataclasses import dataclass, field
 from typing import List, Optional
+
+import numpy as np
 
 
 @dataclass

@@ -9,9 +9,10 @@ Bugfixes gegenüber Original:
 """
 
 import time
+from dataclasses import dataclass
+from typing import List, Optional
+
 import numpy as np
-from typing import Optional, List
-from dataclasses import dataclass, field
 
 
 @dataclass

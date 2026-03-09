@@ -9,12 +9,13 @@ Residuenbasierte + Isolation-Forest-Erkennung für Heatpipe-Health-Monitoring
   und danach nicht mehr neu trainiert (Verhalten ist dokumentiert)
 """
 
-import numpy as np
-from sklearn.ensemble import IsolationForest
+import time
 from collections import deque
 from dataclasses import dataclass
-from typing import List, Optional
-import time
+from typing import Optional
+
+import numpy as np
+from sklearn.ensemble import IsolationForest
 
 
 @dataclass

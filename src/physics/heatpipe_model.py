@@ -8,9 +8,10 @@ Bugfixes gegenüber Original:
 - Temperaturprofil: empirische Mischfaktoren sind dokumentiert
 """
 
-import numpy as np
-from dataclasses import dataclass, field
+from dataclasses import dataclass
 from typing import Optional
+
+import numpy as np
 
 # ── Material-Datenbank ──────────────────────────────────────────────────────
 # Alle Lambda-Funktionen liefern physikalisch sinnvolle (geclampte) Werte.
