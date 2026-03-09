@@ -734,14 +734,14 @@ elif page == "ℹ️ About":
     st.markdown("---")
     st.markdown(
         "**ThermalOS** – AI-Powered Digital Twins for Heat Pipes | "
-        "[GitHub](https://github.com/thermalos) | "
-        "[Contact](mailto:info@thermalos.de)"
+        "[GitHub](https://github.com/Thermal-OS/) | "
+        "[Contact](mailto:tjiokdave@gmail.com)"
     )
 
 # ── Footer ──────────────────────────────────────────────────
 st.sidebar.markdown("---")
-st.sidebar.markdown("© 2026 ThermalOS GmbH")
+st.sidebar.markdown("© 2026 ThermalOS")
 st.sidebar.markdown(
-    "[GitHub](https://github.com/thermalos) | "
-    "[Contact](mailto:info@thermalos.de)"
+    "[GitHub](https://github.com/Thermal-OS/) | "
+    "[Contact](mailto:tjiokdave@gmail.com)"
 )
