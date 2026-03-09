@@ -1,0 +1,57 @@
+# ThermalOS Lab Prototype Configuration
+environment:
+  name: "laboratory"
+  gravity: 9.81
+  ambient_temp: 22.0
+  heat_rejection: "forced_convection"
+
+heatpipe:
+  type: "standard_cchp"
+  envelope_material: "copper"
+  working_fluid: "water"
+  wick_type: "sintered"
+  length: 0.25
+  diameter: 0.01
+  wall_thickness: 0.001
+  wick_thickness: 0.001
+  evap_length: 0.05
+  cond_length: 0.08
+  orientation_deg: 0
+
+teg:
+  model: "SP1848-27145"
+  seebeck_coeff: 0.045
+  internal_resistance: 2.3
+  position: "evaporator_transition"
+
+sensors:
+  temperature:
+    - id: "T_evap_hot"
+      position: 0.02
+      type: "DS18B20"
+    - id: "T_evap_mid"
+      position: 0.05
+      type: "DS18B20"
+    - id: "T_adiabatic"
+      position: 0.125
+      type: "DS18B20"
+    - id: "T_cond_mid"
+      position: 0.20
+      type: "DS18B20"
+    - id: "T_cond_end"
+      position: 0.24
+      type: "DS18B20"
+  sampling_interval: 60
+
+communication:
+  protocol: "LoRa"
+  frequency: 868
+  module: "Heltec_WiFi_LoRa_32_V3"
+  gateway: "Raspberry_Pi_4"
+  mqtt_broker: "mosquitto"
+  database: "influxdb"
+
+energy_harvesting:
+  boost_converter: "LTC3108"
+  supercap: "1F_5.5V"
+  output_voltage: 3.3

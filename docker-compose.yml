@@ -1,0 +1,59 @@
+# Docker Compose – ThermalOS Digital Twin MVP
+# Änderungen gegenüber Original:
+#   - Veraltetes `version: "3.8"` entfernt (Docker Compose v2 ignoriert es,
+#     erzeugt aber Warnungen; in Compose v2 ist kein version-Key nötig)
+#   - mosquitto: Config-Volume hinzugefügt (ermöglicht mosquitto.conf-Montage)
+
+services:
+  thermalos-app:
+    build: .
+    ports:
+      - "8501:8501"
+    environment:
+      - STREAMLIT_SERVER_PORT=8501
+      # Secrets via .env-Datei oder Docker-Secrets setzen:
+      - INFLUX_TOKEN=${INFLUX_TOKEN:-}
+      - INFLUX_URL=${INFLUX_URL:-http://influxdb:8086}
+      - INFLUX_ORG=${INFLUX_ORG:-thermalos}
+      - INFLUX_BUCKET=${INFLUX_BUCKET:-heatpipe_data}
+      - MQTT_BROKER=${MQTT_BROKER:-mosquitto}
+    depends_on:
+      - influxdb
+      - mosquitto
+
+  influxdb:
+    image: influxdb:2.7
+    ports:
+      - "8086:8086"
+    volumes:
+      - influxdb-data:/var/lib/influxdb2
+    environment:
+      - DOCKER_INFLUXDB_INIT_MODE=setup
+      - DOCKER_INFLUXDB_INIT_USERNAME=thermalos
+      - DOCKER_INFLUXDB_INIT_PASSWORD=thermalos2026
+      - DOCKER_INFLUXDB_INIT_ORG=thermalos
+      - DOCKER_INFLUXDB_INIT_BUCKET=heatpipe_data
+
+  mosquitto:
+    image: eclipse-mosquitto:2
+    ports:
+      - "1883:1883"
+    volumes:
+      - mosquitto-data:/mosquitto/data
+      # FIX: Mosquitto benötigt eine Konfigurationsdatei; hier wird ein
+      # lokales config/-Verzeichnis eingebunden. Lege config/mosquitto.conf
+      # mit `listener 1883` und `allow_anonymous true` für lokale Entwicklung an.
+      - ./config/mosquitto.conf:/mosquitto/config/mosquitto.conf:ro
+
+  grafana:
+    image: grafana/grafana:latest
+    ports:
+      - "3000:3000"
+    depends_on:
+      - influxdb
+    environment:
+      - GF_SECURITY_ADMIN_PASSWORD=thermalos2026
+
+volumes:
+  influxdb-data:
+  mosquitto-data:

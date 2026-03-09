@@ -1,0 +1,42 @@
+# ThermalOS Space LEO Configuration
+environment:
+  name: "space_LEO"
+  gravity: 0.0
+  ambient_temp_range: [-160, 90]
+  heat_rejection: "radiation_only"
+  emissivity: 0.85
+  orbit_period: 5400
+
+heatpipe:
+  type: "loop_heat_pipe"
+  envelope_material: "aluminum"
+  working_fluid: "ammonia"
+  wick_type: "sintered"
+  length: 0.8
+  diameter: 0.025
+  operating_temp_range: [-40, 80]
+
+teg:
+  model: "Micropelt_TE-CORE7"
+  seebeck_coeff: 0.012
+  internal_resistance: 180
+  size_mm: [15, 10, 9]
+  redundancy: 2
+
+sensors:
+  temperature:
+    - id: "T_evaporator"
+      position: 0.1
+      type: "PT100"
+    - id: "T_condenser"
+      position: 0.7
+      type: "PT100"
+  pressure:
+    - id: "P_compensation_chamber"
+      type: "piezoresistive"
+
+communication:
+  protocol: "BLE_5.0"
+  module: "nRF52840"
+  range_m: 2
+  target: "onboard_computer"

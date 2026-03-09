@@ -1,0 +1,35 @@
+# ThermalOS Data Center Configuration
+environment:
+  name: "data_center"
+  gravity: 9.81
+  hot_aisle_temp: 42.0
+  cold_aisle_temp: 22.0
+  heat_rejection: "convection_liquid"
+
+heatpipe:
+  type: "thermosyphon_register"
+  envelope_material: "copper"
+  working_fluid: "water"
+  n_pipes_per_register: 24
+  pipe_length: 0.6
+  pipe_diameter: 0.012
+
+teg:
+  model: "TecTeg_TEG2-126LDT"
+  delta_T_typical: 20
+  power_at_20K: 30000  # µW
+
+sensors:
+  temperature:
+    - id: "T_inlet"
+      type: "DS18B20"
+    - id: "T_outlet"
+      type: "DS18B20"
+    - id: "T_ambient"
+      type: "DS18B20"
+
+communication:
+  protocol: "LoRaWAN"
+  frequency: 868
+  gateway_per_row: 1
+  scaling: "400_nodes_per_hall"

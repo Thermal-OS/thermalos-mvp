@@ -1,0 +1,1 @@
+"""ThermalOS – Sensor Simulator Package."""
