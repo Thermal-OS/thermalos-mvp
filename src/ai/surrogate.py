@@ -16,10 +16,9 @@ from pathlib import Path
 from typing import Optional
 
 import numpy as np
-
+from sklearn.model_selection import train_test_split
 from sklearn.neural_network import MLPRegressor
 from sklearn.preprocessing import StandardScaler
-from sklearn.model_selection import train_test_split
 
 # ── Importpfad absichern ──────────────────────────────────────────────────────
 # Damit das Modul sowohl aus dem Projektroot als auch aus src/ai/ heraus

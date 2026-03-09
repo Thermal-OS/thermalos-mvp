@@ -14,16 +14,15 @@ if _ROOT not in sys.path:
 import numpy as np  # noqa: E402
 import pytest  # noqa: E402
 
+from src.ai.anomaly import AnomalyResult, HeatpipeAnomalyDetector  # noqa: E402
 from src.physics.heatpipe_model import (  # noqa: E402
+    FLUIDS,
     HeatpipeConfig,
     HeatpipeModel,
     TEGModel,
-    FLUIDS,
     quick_simulation,
 )
-from src.ai.anomaly import HeatpipeAnomalyDetector, AnomalyResult  # noqa: E402
 from src.sensor.simulator import HeatpipeSensorSimulator, SensorConfig  # noqa: E402
-
 
 # ═══════════════════════════════════════════════════════════════════════════════
 # Hilfs-Konstanten
